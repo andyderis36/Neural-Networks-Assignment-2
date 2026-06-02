@@ -7,13 +7,21 @@ The project evaluates and compares two primary clustering approaches—a linear 
 ---
 
 ## Table of Contents
-1. [Project Description](#project-description)
-2. [Repository Structure](#repository-structure)
-3. [HidupSihat Malaysia Dataset](#hidupsihat-malaysia-dataset)
-4. [Implementation Workflow](#implementation-workflow)
-5. [Clustering Results](#clustering-results)
-6. [Methodology Comparison](#methodology-comparison)
-7. [Installation and Execution](#installation-and-execution)
+- [Customer Lifestyle Segmentation using K-Means and Kohonen Self-Organizing Maps (KSOM)](#customer-lifestyle-segmentation-using-k-means-and-kohonen-self-organizing-maps-ksom)
+  - [Table of Contents](#table-of-contents)
+  - [Project Description](#project-description)
+  - [Repository Structure](#repository-structure)
+  - [HidupSihat Malaysia Dataset](#hidupsihat-malaysia-dataset)
+  - [Implementation Workflow](#implementation-workflow)
+    - [1. Task 1: Data Familiarisation](#1-task-1-data-familiarisation)
+    - [2. Task 2: K-Means Clustering](#2-task-2-k-means-clustering)
+    - [3. Task 3: Kohonen Map (KSOM) Clustering](#3-task-3-kohonen-map-ksom-clustering)
+  - [Clustering Results](#clustering-results)
+    - [Customer Segment Profiles (K-Means Results)](#customer-segment-profiles-k-means-results)
+  - [Methodology Comparison](#methodology-comparison)
+  - [Installation and Execution](#installation-and-execution)
+    - [Prerequisites](#prerequisites)
+    - [Steps:](#steps)
 
 ---
 
@@ -65,17 +73,17 @@ The dataset **STINK3014_Assignment02_Customer_Lifestyle.csv** contains demograph
 
 ## Implementation Workflow
 
-The analysis process in [NN_A_2.ipynb](file:///C:/Users/andyd/Documents/UUM/UUM%20OL/A252/NN/A2/NN_A_2.ipynb) is divided into three main tasks:
+The analysis process in [NN_A_2.ipynb] is divided into three main tasks:
 
 ### 1. Task 1: Data Familiarisation
 * Read the dataset and calculate descriptive statistics of the customer cohort (e.g., mean age of 40.44 years, mean BMI of 26.19 which falls into the overweight category).
 * Perform Pearson correlation analysis. All features show very low linear correlation (all values $r < \pm0.12$). This confirms the necessity of a non-linear clustering approach.
-* Save the correlation heatmap to [output/correlation_heatmap.png](file:///C:/Users/andyd/Documents/UUM/UUM%20OL/A252/NN/A2/output/correlation_heatmap.png).
+* Save the correlation heatmap to [output/correlation_heatmap.png].
 
 ### 2. Task 2: K-Means Clustering
 * Apply Z-score standardization to normalize varying scales (e.g., thousands of steps daily vs. a 1–9 stress scale).
 * Determine the optimal number of clusters using the **Elbow Method** over $K \in [1, 10]$. The Within-Cluster Sum of Squares (WCSS) graph shows a distinct elbow at **$K = 4$**.
-* Train the K-Means model with $K=4$, save the centroid coordinates to [output/kmeans_centroids.csv](file:///C:/Users/andyd/Documents/UUM/UUM%20OL/A252/NN/A2/output/kmeans_centroids.csv), and export the segmented dataset to [output/customer_lifestyle_segmented.csv](file:///C:/Users/andyd/Documents/UUM/UUM%20OL/A252/NN/A2/output/customer_lifestyle_segmented.csv).
+* Train the K-Means model with $K=4$, save the centroid coordinates to [output/kmeans_centroids.csv], and export the segmented dataset to [output/customer_lifestyle_segmented.csv].
 
 ### 3. Task 3: Kohonen Map (KSOM) Clustering
 * Train the Kohonen Map model using the `minisom` library configured with a $2 \times 2$ grid (4 nodes) under competitive learning.
@@ -112,7 +120,7 @@ Based on centroid characteristics, customers are segmented into four consistent 
 
 ## Methodology Comparison
 
-Based on the analysis in [STINK3014_Customer_Segmentation_Report.md](file:///C:/Users/andyd/Documents/UUM/UUM%20OL/A252/NN/A2/STINK3014_Customer_Segmentation_Report.md), KSOM exhibits several structural advantages over K-Means for lifestyle segmentation:
+Based on the analysis in [STINK3014_Customer_Segmentation_Report.md], KSOM exhibits several structural advantages over K-Means for lifestyle segmentation:
 
 1. **Topology Preservation**: K-Means treats clusters as isolated entities with no spatial relationships. KSOM structures clusters on an interconnected 2D grid, allowing clear visualization of customer lifestyle transitions between adjacent nodes.
 2. **Handling Non-Linearity**: Lifestyle feature relationships are often non-linear (e.g., higher spending does not linearly correspond to higher workout frequency). KSOM utilizes competitive non-linear learning to map these complex interactions into a lower-dimensional space.
@@ -154,7 +162,7 @@ Ensure you have **Python 3.8+** installed.
    ```bash
    jupyter notebook
    ```
-   Open [NN_A_2.ipynb](file:///C:/Users/andyd/Documents/UUM/UUM%20OL/A252/NN/A2/NN_A_2.ipynb) to view and execute the analysis code.
+   Open [NN_A_2.ipynb] to view and execute the analysis code.
 
 5. **Read the Full Report:**
-   To access the complete theoretical framework and detailed discussion, read [STINK3014_Customer_Segmentation_Report.md](file:///C:/Users/andyd/Documents/UUM/UUM%20OL/A252/NN/A2/STINK3014_Customer_Segmentation_Report.md).
+   To access the complete theoretical framework and detailed discussion, read [STINK3014_Customer_Segmentation_Report.md].
